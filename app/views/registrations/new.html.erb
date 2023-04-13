@@ -1,5 +1,4 @@
 <h1>Sign up</h1>
-
 <%= form_with model: @user,url: sign_up_path(return_url: @return_url) do |form| %>
     <% if @user.errors.size > 0 %>
         <div class="alert alert-danger">
@@ -10,7 +9,7 @@
     <% end %>
     <div class="mb-3">
         <%= form.label :key %>
-        <%= form.text_field :key, class: "form-control", placeholder: "" %>
+        <%= form.text_field :key, class: "form-control", placeholder: "12 Alphanumeric key" %>
     </div>
     <div class="mb-3">
         <%= form.label :password %>
