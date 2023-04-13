@@ -55,6 +55,27 @@ module Types
         false
       end
     end
+
+    field :addDiscount, [Types::DiscountType], null: true do
+      argument :percentage, Float, required: true
+      argument :minimum, Float, required: true
+    end
+
+    def addDiscount(args)
+      discount = Discount.new(args)
+      if User.find(context.dig(:session,:user_id))
+        if discount.save
+          [
+            percentage: args[:percentage],
+            minimum: args[:minimum]
+          ]
+        else
+          nil
+        end
+      else
+        nil
+      end
+    end
     
   end
 end
