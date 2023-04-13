@@ -11,11 +11,11 @@ module Types
     end
 
     field :product, Types::ProductType, null: false do
-      argument :id, ID, required: true
+      argument :handle, String, required: true
     end
 
-    def product(id:)
-      Product.find(id)
+    def product(handle:)
+      Product.find_by(handle: handle)
     end
 
     field :discount,[Types::DiscountType], null:false
