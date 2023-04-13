@@ -1,6 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
-    
+
     field :addProduct, [Types::ProductType], null: true do
       argument :uuid, Integer, required: true
       argument :name, String, required: true
@@ -25,6 +25,22 @@ module Types
         else
           nil
         end
+      else
+        nil
+      end
+    end
+
+    field :addToCart, [Types::CartType], null: true do
+      argument :products, String, required: true
+    end
+
+    def addToCart(products:)
+      cart = Cart.new(session: context.dig(:session,:session_id),products:products)
+      if cart.save
+        [
+          session: context.dig(:session,:session_id),
+          products: products
+        ]
       else
         nil
       end
