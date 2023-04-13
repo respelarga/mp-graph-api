@@ -46,16 +46,6 @@ module Types
       end
     end
 
-    field :isLoggedIn, Boolean, null: false
-
-    def isLoggedIn 
-      if User.find(context.dig(:session,:user_id))
-        true
-      else
-        false
-      end
-    end
-
     field :addDiscount, [Types::DiscountType], null: true do
       argument :percentage, Float, required: true
       argument :minimum, Float, required: true

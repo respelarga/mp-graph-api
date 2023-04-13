@@ -32,5 +32,15 @@ module Types
       Cart.find_by(session: session)
     end
 
+    field :isLoggedIn, Boolean, null: false
+
+    def isLoggedIn 
+      if User.find(context.dig(:session,:user_id))
+        true
+      else
+        false
+      end
+    end
+
   end
 end
