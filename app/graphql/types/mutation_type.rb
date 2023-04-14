@@ -35,14 +35,24 @@ module Types
     end
 
     def addToCart(products:)
-      cart = Cart.new(session: context.dig(:session,:session_id),products:products)
-      if cart.save
+      cart = Cart.exists?(session: context.dig(:session,:session_id))
+      if cart
+        cart = Cart.find_by(session: context.dig(:session,:session_id))
+        cart.update(products:products)
         [
           session: context.dig(:session,:session_id),
           products: products
         ]
       else
-        nil
+        cart = Cart.new(session: context.dig(:session,:session_id),products:products)
+        if cart.save
+          [
+            session: context.dig(:session,:session_id),
+            products: products
+          ]
+        else
+          nil
+        end
       end
     end
 
