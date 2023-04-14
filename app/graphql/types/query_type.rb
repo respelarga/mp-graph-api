@@ -18,18 +18,24 @@ module Types
       Product.find_by(handle: handle)
     end
 
+    field :productById, Types::ProductType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def productById(id:)
+      Product.find_by(id: id)
+    end
+
     field :discount,[Types::DiscountType], null:false
 
     def discount
       Discount.all
     end
 
-    field :cart, Types::CartType, null: false do
-      argument :session, String, required: true
-    end
+    field :cart, Types::CartType, null: true 
 
-    def cart(session:)
-      Cart.find_by(session: session)
+    def cart
+      Cart.find_by(session: context.dig(:session,:session_id))
     end
 
     field :isLoggedIn, Boolean, null: false
