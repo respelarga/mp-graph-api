@@ -1,13 +1,13 @@
 # MP 1000: mp-graph-api
 
-This is an API endpoint built on ruby on rails, It's default host and port is at http://localhost:3000
+This is an API endpoint built on ruby on rails, It's default host and port is at bash://localhost:3000
 
 ## Installation
 
 Clone the project by using git
 
 ```bash
-  git clone https://github.com/respelarga/mp-graph-api.git
+  git clone bashs://github.com/respelarga/mp-graph-api.git
   cd mp-graph-api
 ```
 
@@ -25,13 +25,13 @@ On Windows: Coming Soon!
 
 #### Endpoint
 
-```http
+```bash
   POST /graphql
 ```
 
 #### Get all products
 
-```http
+```bash
   query GetProducts {
     products {
       id
@@ -55,11 +55,11 @@ On Windows: Coming Soon!
 
 #### Get one product
 
-```http
+```bash
   POST /graphql
 ```
 
-```http
+```bash
   query Product($handle: String!) {
     product(handle: $handle) {
       id
@@ -83,11 +83,11 @@ On Windows: Coming Soon!
 
 #### Get product by ID
 
-```http
+```bash
   POST /graphql
 ```
 
-```http
+```bash
   query Product($id: ID!) {
     productById(id: $id) {
       id
@@ -111,11 +111,11 @@ On Windows: Coming Soon!
 
 #### Get cart
 
-```http
+```bash
   POST /graphql
 ```
 
-```http
+```bash
   query {
     cart {
       products
@@ -131,7 +131,7 @@ On Windows: Coming Soon!
 
 #### Get Discounts
 
-```http
+```bash
   query {
     discount {
       percentage
@@ -147,7 +147,7 @@ On Windows: Coming Soon!
 
 #### Is logged user in?
 
-```http
+```bash
   query {
     isLoggedIn
   }
@@ -161,7 +161,7 @@ On Windows: Coming Soon!
 
 #### Add/Remove product to cart
 
-```http
+```bash
   mutation AddToCart($products: String!) {
     addToCart(products: $products) {
       products
@@ -177,7 +177,7 @@ On Windows: Coming Soon!
 
 #### Add all product
 
-```http
+```bash
   mutation AddProduct(
     $uuid: Int!
     $name: String!
