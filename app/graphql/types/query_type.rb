@@ -40,10 +40,12 @@ module Types
     field :isLoggedIn, Boolean
 
     def isLoggedIn 
-      if User.find(context.dig(:session,:user_id))
-        true
-      else
-        false
+      if !!context.dig(:session,:user_id)
+        if User.find(context.dig(:session,:user_id))
+          true
+        else
+          false
+        end
       end
     end
 
