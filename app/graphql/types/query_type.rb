@@ -4,13 +4,13 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :products, [Types::ProductType], null: false
+    field :products, [Types::ProductType]
 
     def products
       Product.all
     end
 
-    field :product, Types::ProductType, null: false do
+    field :product, Types::ProductType do
       argument :handle, String, required: true
     end
 
@@ -18,7 +18,7 @@ module Types
       Product.find_by(handle: handle)
     end
 
-    field :productById, Types::ProductType, null: false do
+    field :productById, Types::ProductType do
       argument :id, ID, required: true
     end
 
@@ -26,19 +26,18 @@ module Types
       Product.find_by(id: id)
     end
 
-    field :discount,[Types::DiscountType], null:false
+    field :discount,[Types::DiscountType]
 
     def discount
       Discount.all
     end
 
-    field :cart, Types::CartType, null: true 
-
+    field :cart, Types::CartType
     def cart
       Cart.find_by(session: context.dig(:session,:session_id))
     end
 
-    field :isLoggedIn, Boolean, null: false
+    field :isLoggedIn, Boolean
 
     def isLoggedIn 
       if User.find(context.dig(:session,:user_id))
