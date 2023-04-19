@@ -1,13 +1,13 @@
 # MP 1000: mp-graph-api
 
-This is an API endpoint built on ruby on rails, It's default host and port is at bash://localhost:3000
+This is an API endpoint built on ruby on rails, It's default host and port is at http://localhost:3000
 
 ## Installation
 
 Clone the project by using git
 
 ```bash
-  git clone bashs://github.com/respelarga/mp-graph-api.git
+  git clone http://github.com/respelarga/mp-graph-api.git
   cd mp-graph-api
 ```
 
